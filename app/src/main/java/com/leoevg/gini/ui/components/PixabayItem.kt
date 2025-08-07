@@ -11,11 +11,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.leoevg.gini.ui.theme.GiniTheme
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -27,56 +33,74 @@ import androidx.compose.ui.unit.sp
 import com.leoevg.gini.R
 import com.leoevg.gini.data.model.CardAssembly
 import androidx.compose.material3.Button
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import coil.compose.AsyncImage
 
 @Composable
 fun PixabayItem(
     cardData: CardAssembly = CardAssembly(),
     modifier: Modifier = Modifier
 ) {
+    val size = 15;
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .aspectRatio(16f / 10f)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.img_default),
+        AsyncImage(
+            model = cardData.image,
             contentDescription = "background",
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+            placeholder = painterResource(id = R.drawable.img_default),
+            error = painterResource(id = R.drawable.img_default),
+            modifier = Modifier.fillMaxSize()
         )
         Column(
-            modifier = modifier
-                .fillMaxWidth()
+            modifier = Modifier
+                .fillMaxSize(),  // ✅ Занять всё доступное место
+            verticalArrangement = Arrangement.Bottom
         ) {
             Row(
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(10.dp)
             ) {
                 // Likes
                 Button(
-                    onClick = { },
                     modifier = Modifier
-                        .fillMaxHeight(0.1f)
-                        .fillMaxWidth(fraction = 0.2f)
+                        .padding(8.dp)
+                        .height(30.dp),
+                    onClick = { },
+                    contentPadding = PaddingValues(horizontal = 8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Gray
+                    )
                 ) {
                     Text(
-                        text = cardData.likes.toString(),
-                        modifier = Modifier.padding(2.dp),
-                        fontSize = 25.sp,
-                        fontWeight = FontWeight.SemiBold
+                        text = "Likes: ${cardData.likes}",
+                        modifier = Modifier
+                            .padding(start = 2.dp, end = 2.dp),
+                        fontSize = size.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
                     )
                 }
-                // Comments
                 Button(
-                    onClick = { },
                     modifier = Modifier
-                        .fillMaxHeight(0.1f)
-                        .fillMaxWidth(fraction = 0.2f)
+                        .padding(8.dp)
+                        .height(30.dp),
+                    onClick = { },
+                    contentPadding = PaddingValues(horizontal = 8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Gray
+                    )
                 ) {
                     Text(
-                        text = cardData.comments.toString(),
-                        modifier = Modifier.padding(2.dp),
-                        fontSize = 25.sp,
+                        text = "Comments: ${cardData.comments}",
+                        modifier = Modifier.padding(start = 2.dp, end = 2.dp),
+                        fontSize = size.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
@@ -89,11 +113,14 @@ fun PixabayItem(
 
 
 @Composable
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 fun PixabayItemPreview(){
-    GiniTheme (
-        darkTheme = false
-    ){
-        PixabayItem()
+    val fakeItem = CardAssembly(
+        image = "img_default",
+        likes = 100,
+        comments = 100
+    )
+    GiniTheme {
+        PixabayItem(cardData = fakeItem)
     }
 }
