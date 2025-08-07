@@ -1,4 +1,4 @@
-package com.leoevg.gini.screens
+package com.leoevg.gini.presentation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,10 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.leoevg.gini.ui.theme.GiniTheme
+import com.leoevg.gini.presentation.ui.theme.GiniTheme
 
 @Composable
-fun StartScreen() {
+fun MainScreen() {
     var imageUrl by remember { mutableStateOf<String?>(null) }
     Column (
         modifier = Modifier
@@ -43,8 +43,8 @@ fun StartScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun StartScreenPreview() {
+fun MainScreenPreview() {
     GiniTheme {
-        StartScreen()
+        MainScreen()
     }
 }

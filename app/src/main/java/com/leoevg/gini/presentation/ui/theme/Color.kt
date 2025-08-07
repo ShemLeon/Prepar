@@ -1,4 +1,4 @@
-package com.leoevg.gini.ui.theme
+package com.leoevg.gini.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
