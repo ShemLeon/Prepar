@@ -40,8 +40,7 @@ fun PixabayItem(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(16f / 10f)
-    ) {
-        AsyncImage(
+    ) {        AsyncImage(
             model = cardData.image,
             contentDescription = "background",
             contentScale = ContentScale.Crop,
