@@ -7,14 +7,14 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "pixabay_items")
 data class PixabayItemEntity(
 
-    @PrimaryKey(autoGenerate = true)
-    val id: String,
+    @PrimaryKey
+    val id: Int,
 
     @ColumnInfo(name = "likes")
     val likes: Int,
 
     @ColumnInfo(name = "comments")
-    val comments: Int,
+    val comments: Int
 
 
 )

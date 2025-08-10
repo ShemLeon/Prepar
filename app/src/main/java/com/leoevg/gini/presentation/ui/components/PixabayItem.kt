@@ -32,15 +32,16 @@ import com.leoevg.gini.data.api.model.PostResponse
 
 @Composable
 fun PixabayItem(
-    cardData: PostResponse = PostResponse(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    cardData: PostResponse = PostResponse()
 ) {
-    val size = 15;
+    val size = 15
     Box(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(16f / 10f)
-    ) {        AsyncImage(
+    ) {
+        AsyncImage(
             model = cardData.image,
             contentDescription = "background",
             contentScale = ContentScale.Crop,
@@ -48,57 +49,49 @@ fun PixabayItem(
             error = painterResource(id = R.drawable.img_default),
             modifier = Modifier.fillMaxSize()
         )
-        Column(
+        Row(
+            verticalAlignment = Alignment.Bottom,
+            horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Bottom
+                .padding(10.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.SpaceEvenly,
+            // Likes
+            Button(
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(8.dp)
+                    .height(30.dp),
+                onClick = { },
+                contentPadding = PaddingValues(horizontal = 8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Gray
+                )
             ) {
-                // Likes
-                Button(
+                Text(
+                    text = "Likes: ${cardData.likes}",
                     modifier = Modifier
-                        .padding(8.dp)
-                        .height(30.dp),
-                    onClick = { },
-                    contentPadding = PaddingValues(horizontal = 8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Gray
-                    )
-                ) {
-                    Text(
-                        text = "Likes: ${cardData.likes}",
-                        modifier = Modifier
-                            .padding(start = 2.dp, end = 2.dp),
-                        fontSize = size.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.White
-                    )
-                }
-                Button(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .height(30.dp),
-                    onClick = { },
-                    contentPadding = PaddingValues(horizontal = 8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Gray
-                    )
-                ) {
-                    Text(
-                        text = "Comments: ${cardData.comments}",
-                        modifier = Modifier.padding(start = 2.dp, end = 2.dp),
-                        fontSize = size.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
-
-
-                }
+                        .padding(start = 2.dp, end = 2.dp),
+                    fontSize = size.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White
+                )
+            }
+            Button(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .height(30.dp),
+                onClick = { },
+                contentPadding = PaddingValues(horizontal = 8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Gray
+                )
+            ) {
+                Text(
+                    text = "Comments: ${cardData.comments}",
+                    modifier = Modifier.padding(start = 2.dp, end = 2.dp),
+                    fontSize = size.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
             }
         }
     }

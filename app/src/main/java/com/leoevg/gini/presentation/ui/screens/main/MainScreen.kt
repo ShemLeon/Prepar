@@ -1,4 +1,4 @@
-package com.leoevg.gini.presentation.screens
+package com.leoevg.gini.presentation.ui.screens.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,10 +18,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.leoevg.gini.presentation.ui.theme.GiniTheme
 
 @Composable
 fun MainScreen() {
+    val viewModel: MainScreenViewModel = hiltViewModel()
     var imageUrl by remember { mutableStateOf<String?>(null) }
     Column (
         modifier = Modifier
