@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -40,6 +42,30 @@ android {
 }
 
 dependencies {
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    // ViewModel
+    implementation(libs.lifecycle.viewmodel.compose)
+
+    // Navigation
+    implementation(libs.navigation.compose)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Dagger Hilt
+    implementation(libs.dagger.hilt)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.dagger.hilt.compiler)
+
+    // WorkManager
+    implementation(libs.work.runtime.ktx)
+
+    // OkHttp Logging
+    implementation(libs.okhttp.logging)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.gson)

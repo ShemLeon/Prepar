@@ -1,4 +1,4 @@
-package com.leoevg.gini.presentation.ui.model
+package com.leoevg.gini.data.api.model
 
 data class CardAssembly(
     val image: String = "img_default",

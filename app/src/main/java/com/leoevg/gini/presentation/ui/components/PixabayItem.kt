@@ -25,13 +25,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leoevg.gini.R
-import com.leoevg.gini.presentation.ui.model.CardAssembly
+import com.leoevg.gini.data.api.model.CardAssembly
 import androidx.compose.ui.graphics.Color
 import coil.compose.AsyncImage
+import com.leoevg.gini.data.api.model.PostResponse
 
 @Composable
 fun PixabayItem(
-    cardData: CardAssembly = CardAssembly(),
+    cardData: PostResponse = PostResponse(),
     modifier: Modifier = Modifier
 ) {
     val size = 15;
@@ -50,7 +51,7 @@ fun PixabayItem(
         )
         Column(
             modifier = Modifier
-                .fillMaxSize(),  // ✅ Занять всё доступное место
+                .fillMaxSize(),
             verticalArrangement = Arrangement.Bottom
         ) {
             Row(
@@ -107,7 +108,7 @@ fun PixabayItem(
 @Composable
 @Preview(showBackground = false)
 fun PixabayItemPreview(){
-    val fakeItem = CardAssembly(
+    val fakeItem = PostResponse(
         image = "img_default",
         likes = 100,
         comments = 100
@@ -116,3 +117,5 @@ fun PixabayItemPreview(){
         PixabayItem(cardData = fakeItem)
     }
 }
+
+// a197e51143454561a9f6e478473e995a
