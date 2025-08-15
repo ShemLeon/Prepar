@@ -2,7 +2,7 @@ package com.leoevg.gini.presentation.di
 
 import android.content.Context
 import androidx.room.Room
-import com.leoevg.gini.data.room.dao.PixabayItemsRoomRepository
+import com.leoevg.gini.data.room.dao.RoomApi
 import com.leoevg.gini.presentation.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -26,7 +26,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideUserDao(appDatabase: AppDatabase): PixabayItemsRoomRepository {
+    fun provideUserDao(appDatabase: AppDatabase): RoomApi {
         return appDatabase.getPixabayItemsDao()
     }
 }

@@ -1,8 +1,8 @@
-package com.leoevg.gini.data.useCase
+package com.leoevg.gini.domain.useCase
 
-import com.leoevg.gini.data.room.dao.PixabayItemsRoomRepository
 import com.leoevg.gini.domain.model.Cards
 import com.leoevg.gini.domain.repository.PixabayItemsRemoteRepository
+import com.leoevg.gini.domain.repository.PixabayItemsRoomRepository
 import javax.inject.Inject
 
 
@@ -12,8 +12,7 @@ class LoadPixabayItemsUseCase @Inject constructor(
 ) {
     operator fun invoke(isLocal: Boolean): Cards? {
         return if (isLocal) {
-//            pixabayItemsDao.getPixabayItems()
-            TODO()
+            pixabayItemsRoomRepository.getPixabayList()
         } else {
             pixabayItemsRemoteRepository.getAll()
         }

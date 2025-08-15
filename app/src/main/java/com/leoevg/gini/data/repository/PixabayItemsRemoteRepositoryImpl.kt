@@ -1,9 +1,8 @@
 package com.leoevg.gini.data.repository
 
 import android.util.Log
-import com.leoevg.gini.data.mapper.PixabayServerDataMapper
+import com.leoevg.gini.data.mapper.PixabayServerDataHandler
 import com.leoevg.gini.data.network.ApiServiceManager
-import com.leoevg.gini.domain.model.CardAssembly
 import com.leoevg.gini.domain.model.Cards
 import com.leoevg.gini.domain.repository.PixabayItemsRemoteRepository
 
@@ -17,7 +16,7 @@ class PixabayItemsRemoteRepositoryImpl: PixabayItemsRemoteRepository {
             if (response.isSuccessful) {
                 val pixabayApiResponse = response.body()
                 return pixabayApiResponse?.let{
-                    PixabayServerDataMapper.convert(it)
+                    PixabayServerDataHandler.convert(it)
                 }
             }
         } catch (e: Exception) {

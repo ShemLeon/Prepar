@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.leoevg.gini.data.room.entities.PixabayItemEntity
 
 @Dao
-interface PixabayItemsRoomRepository {
+interface RoomApi {
 
     @Insert
     fun addPixabayItem(pixabayItem: PixabayItemEntity)

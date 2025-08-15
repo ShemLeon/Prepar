@@ -1,17 +1,18 @@
 package com.leoevg.gini.data.room
 
-import com.leoevg.gini.data.room.dao.PixabayItemsRoomRepository
+import com.leoevg.gini.data.room.dao.RoomApi
 import com.leoevg.gini.data.room.entities.PixabayItemEntity
-import com.leoevg.gini.domain.model.CardAssembly
+import com.leoevg.gini.domain.model.CardUI
 import com.leoevg.gini.domain.model.Cards
+import com.leoevg.gini.domain.repository.PixabayItemsRoomRepository
 
-class PeremapperImpl(
-    val pixabayItemsRoomRepository: PixabayItemsRoomRepository
-) : Peremapper {
+class PixabayItemsRoomRepositoryImpl(
+    val roomApi: RoomApi
+) : PixabayItemsRoomRepository {
     override fun getPixabayList(): Cards {
-        val items = pixabayItemsRoomRepository.getPixabayItems()
+        val items = roomApi.getPixabayItems()
         val cards = items.map {
-            CardAssembly(
+            CardUI(
                 id = it.id,
                 image = it.image,
                 likes = it.likes,
@@ -30,7 +31,7 @@ class PeremapperImpl(
                 comments = it.comments
             )
         }
-        pixabayItemsRoomRepository.addPixabayItems(entities)
+        roomApi.addPixabayItems(entities)
     }
 
 }

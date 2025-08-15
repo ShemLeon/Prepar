@@ -28,6 +28,9 @@ fun MainScreen() {
     val viewModel: MainScreenViewModel = hiltViewModel()
     val uiState = viewModel.state.collectAsState()
     var imageUrl by remember { mutableStateOf<String?>(null) }
+
+
+
     LaunchedEffect(Unit) {
         viewModel.sendEvent(FetchImages)
     }

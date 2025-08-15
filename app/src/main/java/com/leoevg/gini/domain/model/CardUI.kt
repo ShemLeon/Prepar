@@ -1,6 +1,6 @@
 package com.leoevg.gini.domain.model
 
-data class CardAssembly(
+data class CardUI(
     val id: Int,
     val likes: Int,
     val comments: Int,

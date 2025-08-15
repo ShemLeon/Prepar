@@ -27,11 +27,12 @@ import com.leoevg.gini.R
 import androidx.compose.ui.graphics.Color
 import coil.compose.AsyncImage
 import com.leoevg.gini.data.network.model.HitResponse
+import com.leoevg.gini.domain.model.CardUI
 
 @Composable
 fun PixabayItem(
     modifier: Modifier = Modifier,
-    cardData: HitResponse = HitResponse()
+    cardData: CardUI
 ) {
     val size = 15
     Box(
@@ -98,7 +99,8 @@ fun PixabayItem(
 @Composable
 @Preview(showBackground = false)
 fun PixabayItemPreview(){
-    val fakeItem = HitResponse(
+    val fakeItem = CardUI(
+        id = 1,
         image = "img_default",
         likes = 100,
         comments = 100

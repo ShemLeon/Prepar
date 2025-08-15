@@ -2,8 +2,8 @@ package com.leoevg.gini.presentation.ui.screens.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.leoevg.gini.data.useCase.LoadPixabayItemsUseCase
 import com.leoevg.gini.domain.model.Cards
+import com.leoevg.gini.domain.useCase.LoadPixabayItemsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,7 +25,7 @@ class MainScreenViewModel @Inject constructor(
             is FetchImages -> {
                 _state.value = _state.value.copy(isLoading = true)
                 viewModelScope.launch {
-                    loadImagesFromDatabaseRoom() ?: loadImagesFromServer() ?: handleError()
+                    loadImagesFromDatabaseRoom() ?: loadAndSortImagesFromServer() ?: handleError()
                 }
             }
         }
@@ -52,15 +52,18 @@ class MainScreenViewModel @Inject constructor(
         }
     }
 
-    private fun loadImagesFromServer(): Unit? {
-        val serverCards = loadPixabayItemsUseCase.invoke(false)
+    private fun loadAndSortImagesFromServer(): Unit? {
+        val serverCards = loadPixabayItemsUseCase.invoke(false)?.cards?.sortedByDescending { it.likes }
         return serverCards?.let {
             _state.update {
                 it.copy(
                     isLoading = false,
-                    cards = serverCards
+                    cards = Cards(serverCards)
                 )
             }
         }
     }
+
+
+
 }

@@ -1,8 +1,9 @@
 package com.leoevg.gini.presentation.di
 
-import com.leoevg.gini.data.room.dao.PixabayItemsRoomRepository
-import com.leoevg.gini.data.useCase.LoadPixabayItemsUseCase
+import com.leoevg.gini.data.room.dao.RoomApi
+import com.leoevg.gini.domain.useCase.LoadPixabayItemsUseCase
 import com.leoevg.gini.domain.repository.PixabayItemsRemoteRepository
+import com.leoevg.gini.domain.repository.PixabayItemsRoomRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

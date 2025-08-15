@@ -1,18 +1,20 @@
 package com.leoevg.gini.data.mapper
 
 import com.leoevg.gini.data.network.model.PixabayApiResponse
-import com.leoevg.gini.domain.model.CardAssembly
+import com.leoevg.gini.domain.model.CardUI
 import com.leoevg.gini.domain.model.Cards
 
-object PixabayServerDataMapper {
+object PixabayServerDataHandler {
     fun convert(response: PixabayApiResponse): Cards {
         val cards = response.hits.mapNotNull { hit ->
             if (hit.id != null
                 && hit.likes != null
                 && hit.comments != null
                 && hit.image != null
+                && hit.likes > 50
+                && hit.comments > 50
             ) {
-                CardAssembly(
+                CardUI(
                     id = hit.id,
                     likes = hit.likes,
                     comments = hit.comments,
