@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,7 +26,12 @@ import com.leoevg.gini.presentation.ui.theme.GiniTheme
 @Composable
 fun MainScreen() {
     val viewModel: MainScreenViewModel = hiltViewModel()
+    val uiState = viewModel.state.collectAsState()
     var imageUrl by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(Unit) {
+        viewModel.sendEvent(FetchImages)
+    }
+
     Column (
         modifier = Modifier
             .fillMaxSize()

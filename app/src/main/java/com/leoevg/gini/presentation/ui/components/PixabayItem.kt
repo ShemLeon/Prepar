@@ -2,7 +2,6 @@ package com.leoevg.gini.presentation.ui.components
 
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -25,15 +24,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leoevg.gini.R
-import com.leoevg.gini.data.api.model.CardAssembly
 import androidx.compose.ui.graphics.Color
 import coil.compose.AsyncImage
-import com.leoevg.gini.data.api.model.PostResponse
+import com.leoevg.gini.data.network.model.HitResponse
 
 @Composable
 fun PixabayItem(
     modifier: Modifier = Modifier,
-    cardData: PostResponse = PostResponse()
+    cardData: HitResponse = HitResponse()
 ) {
     val size = 15
     Box(
@@ -100,7 +98,7 @@ fun PixabayItem(
 @Composable
 @Preview(showBackground = false)
 fun PixabayItemPreview(){
-    val fakeItem = PostResponse(
+    val fakeItem = HitResponse(
         image = "img_default",
         likes = 100,
         comments = 100

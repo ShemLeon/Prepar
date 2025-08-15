@@ -1,6 +1,6 @@
 package com.leoevg.gini.presentation.di
 
-import com.leoevg.gini.data.dao.PixabayItemsDao
+import com.leoevg.gini.data.room.dao.PixabayItemsRoomRepository
 import com.leoevg.gini.data.useCase.LoadPixabayItemsUseCase
 import com.leoevg.gini.domain.repository.PixabayItemsRemoteRepository
 import dagger.Module
@@ -15,11 +15,11 @@ object UseCasesModule {
     @Provides
     @Singleton
     fun provideLoadPixabayItemsUseCase(
-        pixabayItemsDao: PixabayItemsDao,
+        pixabayItemsRoomRepository: PixabayItemsRoomRepository,
         pixabayItemsRemoteRepository: PixabayItemsRemoteRepository
     ): LoadPixabayItemsUseCase {
         return LoadPixabayItemsUseCase(
-            pixabayItemsDao = pixabayItemsDao,
+            pixabayItemsRoomRepository = pixabayItemsRoomRepository,
             pixabayItemsRemoteRepository = pixabayItemsRemoteRepository
         )
     }

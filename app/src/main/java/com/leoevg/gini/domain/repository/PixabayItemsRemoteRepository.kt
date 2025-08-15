@@ -1,7 +1,8 @@
 package com.leoevg.gini.domain.repository
 
-import com.leoevg.gini.domain.model.PixabayItem
+import com.leoevg.gini.domain.model.CardAssembly
+import com.leoevg.gini.domain.model.Cards
 
 interface PixabayItemsRemoteRepository {
-    fun getAll(): List<PixabayItem>
+    fun getAll(): Cards?
 }

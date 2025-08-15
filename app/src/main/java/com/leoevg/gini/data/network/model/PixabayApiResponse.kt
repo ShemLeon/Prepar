@@ -1,4 +1,4 @@
-package com.leoevg.gini.data.api.model
+package com.leoevg.gini.data.network.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -11,6 +11,6 @@ data class PixabayApiResponse(
     val totalHits: Int,
 
     @SerializedName("hits")
-    val hits: List<PostResponse>
+    val hits: List<HitResponse>
 
 )

@@ -1,14 +1,12 @@
-package com.leoevg.gini.data.dao
+package com.leoevg.gini.data.room.dao
 
-import android.media.Image
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.leoevg.gini.data.entities.PixabayItemEntity
+import com.leoevg.gini.data.room.entities.PixabayItemEntity
 
 @Dao
-interface PixabayItemsDao {
+interface PixabayItemsRoomRepository {
 
     @Insert
     fun addPixabayItem(pixabayItem: PixabayItemEntity)

@@ -1,4 +1,4 @@
-package com.leoevg.gini.data.entities
+package com.leoevg.gini.data.room.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -9,6 +9,9 @@ data class PixabayItemEntity(
 
     @PrimaryKey
     val id: Int,
+
+    @ColumnInfo(name = "images")
+    val image: String,
 
     @ColumnInfo(name = "likes")
     val likes: Int,
