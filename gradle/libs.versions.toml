@@ -1,8 +1,8 @@
 [versions]
 retrofit = "2.9.0"
 gson = "2.10.1"
-coil = "2.4.0"
-room = "2.6.1"
+coil = "2.7.0"
+room = "2.7.2"
 lifecycle = "2.6.1"
 navigationCompose = "2.7.2"
 coroutines = "1.7.3"
