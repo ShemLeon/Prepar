@@ -40,7 +40,7 @@ class MainScreenViewModel @Inject constructor(
         }
     }
 
-    private fun loadImagesFromDatabaseRoom(): Unit? {
+    private suspend fun loadImagesFromDatabaseRoom(): Unit? {
         val localCards = loadPixabayItemsUseCase.invoke(true)
         return localCards?.let {
             _state.update {
@@ -52,7 +52,7 @@ class MainScreenViewModel @Inject constructor(
         }
     }
 
-    private fun loadAndSortImagesFromServer(): Unit? {
+    private suspend fun loadAndSortImagesFromServer(): Unit? {
         val serverCards = loadPixabayItemsUseCase.invoke(false)?.cards?.sortedByDescending { it.likes }
         return serverCards?.let {
             _state.update {
