@@ -11,7 +11,6 @@ ksp = "2.0.21-1.0.26"
 hiltNavigationCompose = "1.1.0"
 workManager = "2.9.0"
 okhttp = "4.9.3"
-
 agp = "8.12.0"
 kotlin = "2.0.21"
 coreKtx = "1.10.1"
