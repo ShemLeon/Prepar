@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.leoevg.gini.R
 import androidx.compose.ui.graphics.Color
 import coil.compose.AsyncImage
-import com.leoevg.gini.data.network.model.HitResponse
+// import com.leoevg.gini.data.network.model.HitResponse // Not used directly in this composable
 import com.leoevg.gini.domain.model.CardUI
 
 @Composable
@@ -39,6 +39,7 @@ fun PixabayItem(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(16f / 10f)
+        // contentAlignment = Alignment.BottomCenter // Option 2: Align all children to bottom center
     ) {
         AsyncImage(
             model = cardData.image,
@@ -49,20 +50,22 @@ fun PixabayItem(
             modifier = Modifier.fillMaxSize()
         )
         Row(
-            verticalAlignment = Alignment.Bottom,
+            // verticalAlignment = Alignment.Bottom, // This aligns items *within* the Row, not the Row itself
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
+                .align(Alignment.BottomCenter) // This aligns the Row to the bottom center of the Box
+                .fillMaxWidth() // Optional: if you want the Row to span the full width before arranging children
                 .padding(10.dp)
         ) {
             // Likes
             Button(
                 modifier = Modifier
-                    .padding(8.dp)
+                    // .padding(8.dp) // Consider if padding is needed on both button and row
                     .height(30.dp),
                 onClick = { },
                 contentPadding = PaddingValues(horizontal = 8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Gray
+                    containerColor = Color.Gray.copy(alpha = 0.7f) // Added some transparency
                 )
             ) {
                 Text(
@@ -76,32 +79,33 @@ fun PixabayItem(
             }
             Button(
                 modifier = Modifier
-                    .padding(8.dp)
+                    // .padding(8.dp)
                     .height(30.dp),
                 onClick = { },
                 contentPadding = PaddingValues(horizontal = 8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Gray
+                    containerColor = Color.Gray.copy(alpha = 0.7f) // Added some transparency
                 )
             ) {
                 Text(
                     text = "Comments: ${cardData.comments}",
                     modifier = Modifier.padding(start = 2.dp, end = 2.dp),
                     fontSize = size.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White // Explicitly set text color to white for consistency
                 )
-            }
             }
         }
     }
+}
 
 
 @Composable
 @Preview(showBackground = false)
-fun PixabayItemPreview(){
+fun PixabayItemPreview() {
     val fakeItem = CardUI(
         id = 1,
-        image = "img_default",
+        image = "R.drawable.img_default", // For preview with local resource
         likes = 100,
         comments = 100
     )
