@@ -5,8 +5,10 @@ import com.leoevg.gini.data.mapper.PixabayServerDataHandler
 import com.leoevg.gini.data.network.ApiServiceManager
 import com.leoevg.gini.domain.model.Cards
 import com.leoevg.gini.domain.repository.PixabayItemsRemoteRepository
+import javax.inject.Inject
 
-class PixabayItemsRemoteRepositoryImpl: PixabayItemsRemoteRepository {
+
+class PixabayItemsRemoteRepositoryImpl @Inject constructor(): PixabayItemsRemoteRepository  {
 
     override fun getAll(): Cards? {
         // обращаемся тут к серверу и обрабатываем

@@ -1,12 +1,13 @@
-package com.leoevg.gini.data.room
+package com.leoevg.gini.data.repository
 
 import com.leoevg.gini.data.room.dao.RoomApi
 import com.leoevg.gini.data.room.entities.PixabayItemEntity
 import com.leoevg.gini.domain.model.CardUI
 import com.leoevg.gini.domain.model.Cards
 import com.leoevg.gini.domain.repository.PixabayItemsRoomRepository
+import javax.inject.Inject
 
-class PixabayItemsRoomRepositoryImpl(
+class PixabayItemsRoomRepositoryImpl @Inject constructor(
     val roomApi: RoomApi
 ) : PixabayItemsRoomRepository {
     override fun getPixabayList(): Cards {

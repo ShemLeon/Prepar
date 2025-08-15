@@ -2,13 +2,17 @@ package com.leoevg.gini.presentation.ui.screens.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,21 +25,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.leoevg.gini.presentation.ui.components.PixabayItem
 import com.leoevg.gini.presentation.ui.theme.GiniTheme
 
 @Composable
 fun MainScreen() {
     val viewModel: MainScreenViewModel = hiltViewModel()
     val uiState = viewModel.state.collectAsState()
-    var imageUrl by remember { mutableStateOf<String?>(null) }
-
-
 
     LaunchedEffect(Unit) {
         viewModel.sendEvent(FetchImages)
     }
 
-    Column (
+    if (uiState.value.isLoading) CircularProgressIndicator()
+    else InternalContent(uiState)
+
+}
+
+@Composable
+private fun InternalContent(uiState: State<MainScreenState>) {
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White, shape = RoundedCornerShape(15.dp))
@@ -43,13 +52,9 @@ fun MainScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = "Start Screen",
-            color = Color.Black,
-            fontSize = 30.sp,
-            modifier = Modifier
-                .padding(top = 10.dp)
-        )
+        items(uiState.value.cards.cards.size) {
+            PixabayItem(cardData = uiState.value.cards.cards[it])
+        }
     }
 }
 

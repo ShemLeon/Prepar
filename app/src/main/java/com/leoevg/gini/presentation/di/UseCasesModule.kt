@@ -24,5 +24,4 @@ object UseCasesModule {
             pixabayItemsRemoteRepository = pixabayItemsRemoteRepository
         )
     }
-
 }
