@@ -7,7 +7,6 @@ import com.leoevg.gini.data.room.entities.PixabayItemEntity
 
 @Dao
 interface RoomApi {
-
     @Insert
     fun addPixabayItem(pixabayItem: PixabayItemEntity)
 

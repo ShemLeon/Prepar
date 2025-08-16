@@ -22,7 +22,6 @@ class MainScreenViewModel @Inject constructor(
     private val _state: MutableStateFlow<MainScreenState> = MutableStateFlow(MainScreenState())
     val state: StateFlow<MainScreenState> = _state.asStateFlow()
 
-
     fun sendEvent(event: MainScreenEvent) {
         when (event) {
             is FetchImages -> {

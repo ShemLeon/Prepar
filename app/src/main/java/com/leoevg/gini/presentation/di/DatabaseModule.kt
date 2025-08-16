@@ -3,7 +3,7 @@ package com.leoevg.gini.presentation.di
 import android.content.Context
 import androidx.room.Room
 import com.leoevg.gini.data.room.dao.RoomApi
-import com.leoevg.gini.presentation.database.AppDatabase
+import com.leoevg.gini.data.room.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

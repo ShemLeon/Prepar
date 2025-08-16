@@ -1,4 +1,4 @@
-package com.leoevg.gini.presentation.database
+package com.leoevg.gini.data.room.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
