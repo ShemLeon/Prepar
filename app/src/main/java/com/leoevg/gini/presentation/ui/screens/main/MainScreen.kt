@@ -44,18 +44,28 @@ fun MainScreen() {
 
 @Composable
 private fun InternalContent(uiState: State<MainScreenState>) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.White, shape = RoundedCornerShape(15.dp))
-            .padding(10.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        items(uiState.value.cards.cards.size) {
-            PixabayItem(cardData = uiState.value.cards.cards[it])
+    if (uiState.value.cards.cards.isNotEmpty()){
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color.White, shape = RoundedCornerShape(15.dp))
+                .padding(10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            items(uiState.value.cards.cards.size) {
+                PixabayItem(cardData = uiState.value.cards.cards[it])
+            }
         }
+    } else {
+        Text(
+            text = "EMPTY SPISOK",
+            fontSize = 30.sp,
+            color = Color.Red
+        )
     }
+
 }
 
 @Preview(showBackground = true)

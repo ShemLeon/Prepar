@@ -42,6 +42,8 @@ class MainScreenViewModel @Inject constructor(
 
     private suspend fun loadImagesFromDatabaseRoom(): Unit? {
         val localCards = loadPixabayItemsUseCase.invoke(true)
+        if (localCards?.cards?.isEmpty() == true) return null
+
         return localCards?.let {
             _state.update {
                 it.copy(

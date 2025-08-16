@@ -15,6 +15,8 @@ class PixabayItemsRemoteRepositoryImpl @Inject constructor(): PixabayItemsRemote
         try {
             val service = ApiServiceManager.apiService
             val response = service.getPixabayList().execute()
+            Log.d("PixabayItemsRemoteRepository", "Response: $response")
+
             if (response.isSuccessful) {
                 val pixabayApiResponse = response.body()
                 return pixabayApiResponse?.let{
