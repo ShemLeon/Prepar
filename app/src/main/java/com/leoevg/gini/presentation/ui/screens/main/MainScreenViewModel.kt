@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leoevg.gini.domain.model.Cards
 import com.leoevg.gini.domain.useCase.LoadPixabayItemsUseCase
+import com.leoevg.gini.domain.useCase.SaveImagesToDatabaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val loadPixabayItemsUseCase: LoadPixabayItemsUseCase
+    private val loadPixabayItemsUseCase: LoadPixabayItemsUseCase,
+    private val saveImagesToDatabaseUseCase: SaveImagesToDatabaseUseCase
 ) : ViewModel() {
     private val _state: MutableStateFlow<MainScreenState> = MutableStateFlow(MainScreenState())
     val state: StateFlow<MainScreenState> = _state.asStateFlow()
@@ -24,11 +27,15 @@ class MainScreenViewModel @Inject constructor(
         when (event) {
             is FetchImages -> {
                 _state.value = _state.value.copy(isLoading = true)
-                viewModelScope.launch {
-                    loadImagesFromDatabaseRoom() ?: loadAndSortImagesFromServer() ?: handleError()
+                viewModelScope.launch(Dispatchers.IO) {
+                    loadImagesFromDatabaseRoom() ?: loadAndSortImagesFromServer().also { saveImagesToRoom() } ?: handleError()
                 }
             }
         }
+    }
+
+    private fun saveImagesToRoom() {
+        saveImagesToDatabaseUseCase.invoke(_state.value.cards)
     }
 
     private fun handleError() {
