@@ -14,10 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,6 +25,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.leoevg.gini.presentation.ui.components.PixabayItem
 import com.leoevg.gini.presentation.ui.theme.GiniTheme
+import com.leoevg.gini.domain.model.CardUI
+import com.leoevg.gini.domain.model.Cards
 
 @Composable
 fun MainScreen() {
@@ -50,7 +50,7 @@ private fun InternalContent(uiState: State<MainScreenState>) {
                 .background(color = Color.White, shape = RoundedCornerShape(15.dp))
                 .padding(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
 
             items(uiState.value.cards.cards.size) {
@@ -70,7 +70,18 @@ private fun InternalContent(uiState: State<MainScreenState>) {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
+    val testCards = Cards(
+        cards = listOf(
+            CardUI(id = 1, likes = 100, comments = 60, image = ""),
+            CardUI(id = 2, likes = 200, comments = 70, image = ""),
+            CardUI(id = 3, likes = 300, comments = 80, image = "")
+        )
+    )
+    val testState = remember {
+        mutableStateOf(MainScreenState(isLoading = false, cards = testCards))
+    }
+
     GiniTheme {
-        MainScreen()
+        InternalContent(uiState = testState)
     }
 }
