@@ -1,6 +1,7 @@
 package com.leoevg.gini.service
 
 import android.content.Context
+import androidx.work.CoroutineWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.leoevg.gini.domain.model.Cards
@@ -13,24 +14,25 @@ class SyncImagesWorker(
     workerParams: WorkerParameters,
     private val loadPixabayItemsUseCase: LoadPixabayItemsUseCase,
     private val saveImagesToDatabaseUseCase: SaveImagesToDatabaseUseCase
-) : Worker(context, workerParams) {
+) : CoroutineWorker(context, workerParams) {
 
-    override fun doWork(): Result {
+    override suspend fun doWork(): Result {
         try {
             val serverCards = loadAndSortImagesFromServer()
             serverCards?.let { cards ->
-                saveImagesToRoom(serverCards)
+                saveImagesToRoom(Cards(serverCards))
+                return Result.success()
             }
+            return Result.failure()
         } catch (e: Exception) {
             return Result.failure()
         }
-        TODO("Not yet implemented")
     }
 
 
     private suspend fun loadAndSortImagesFromServer() =
         loadPixabayItemsUseCase.invoke(false)?.cards?.sortedByDescending { it.likes }
 
-    private suspend fun saveImagesToRoom(cards: Cards) = saveImagesToDatabaseUseCase.invoke(cards)
+    private fun saveImagesToRoom(cards: Cards) = saveImagesToDatabaseUseCase.invoke(cards)
 
 }
