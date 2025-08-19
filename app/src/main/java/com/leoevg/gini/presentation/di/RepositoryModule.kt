@@ -1,9 +1,9 @@
 package com.leoevg.gini.presentation.di
 
 import com.leoevg.gini.data.repository.PixabayItemsRemoteRepositoryImpl
-import com.leoevg.gini.data.repository.PixabayItemsRoomRepositoryImpl
+import com.leoevg.gini.data.repository.PixabayItemsLocalRepositoryImpl
 import com.leoevg.gini.domain.repository.PixabayItemsRemoteRepository
-import com.leoevg.gini.domain.repository.PixabayItemsRoomRepository
+import com.leoevg.gini.domain.repository.PixabayItemsLocalRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,6 +23,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindPixabayItemsRoomRepository(
-        pixabayItemsRoomRepositoryImpl: PixabayItemsRoomRepositoryImpl
-    ): PixabayItemsRoomRepository
+        pixabayItemsLocalRepositoryImpl: PixabayItemsLocalRepositoryImpl
+    ): PixabayItemsLocalRepository
 }

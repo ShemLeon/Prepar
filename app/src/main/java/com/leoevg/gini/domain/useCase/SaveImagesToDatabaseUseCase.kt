@@ -1,11 +1,11 @@
 package com.leoevg.gini.domain.useCase
 
 import com.leoevg.gini.domain.model.Cards
-import com.leoevg.gini.domain.repository.PixabayItemsRoomRepository
+import com.leoevg.gini.domain.repository.PixabayItemsLocalRepository
 import javax.inject.Inject
 
 class SaveImagesToDatabaseUseCase @Inject constructor(
-    private val pixabayItemsRoomRepository: PixabayItemsRoomRepository
+    private val pixabayItemsRoomRepository: PixabayItemsLocalRepository
 ) {
     operator fun invoke(cards: Cards) {
        pixabayItemsRoomRepository.putPixabayList(cards)

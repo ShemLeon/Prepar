@@ -4,12 +4,12 @@ import com.leoevg.gini.data.room.dao.RoomApi
 import com.leoevg.gini.data.room.entities.PixabayItemEntity
 import com.leoevg.gini.domain.model.CardUI
 import com.leoevg.gini.domain.model.Cards
-import com.leoevg.gini.domain.repository.PixabayItemsRoomRepository
+import com.leoevg.gini.domain.repository.PixabayItemsLocalRepository
 import javax.inject.Inject
 
-class PixabayItemsRoomRepositoryImpl @Inject constructor(
+class PixabayItemsLocalRepositoryImpl @Inject constructor(
     val roomApi: RoomApi
-) : PixabayItemsRoomRepository {
+) : PixabayItemsLocalRepository {
     override fun getPixabayList(): Cards {
         val items = roomApi.getPixabayItems()
         val cards = items.map {
@@ -24,6 +24,7 @@ class PixabayItemsRoomRepositoryImpl @Inject constructor(
     }
 
     override fun putPixabayList(cards: Cards) {
+        saveImageToFile()
         val entities = cards.cards.map {
             PixabayItemEntity(
                 id = it.id,
@@ -33,6 +34,10 @@ class PixabayItemsRoomRepositoryImpl @Inject constructor(
             )
         }
         roomApi.addPixabayItems(entities)
+    }
+
+    private fun saveImageToFile() {
+
     }
 
 }
