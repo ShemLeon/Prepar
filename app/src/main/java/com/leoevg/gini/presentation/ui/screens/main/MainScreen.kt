@@ -34,7 +34,7 @@ fun MainScreen() {
     val uiState = viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.sendEvent(FetchImages)
+        viewModel.sendEvent(MainScreenEvent.FetchImages)
     }
 
     if (uiState.value.isLoading) CircularProgressIndicator()

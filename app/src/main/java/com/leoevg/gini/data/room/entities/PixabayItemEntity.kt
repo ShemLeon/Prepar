@@ -19,5 +19,4 @@ data class PixabayItemEntity(
     @ColumnInfo(name = "comments")
     val comments: Int
 
-
 )

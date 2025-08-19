@@ -24,7 +24,7 @@ class MainScreenViewModel @Inject constructor(
 
     fun sendEvent(event: MainScreenEvent) {
         when (event) {
-            is FetchImages -> {
+            is MainScreenEvent.FetchImages -> {
                 _state.value = _state.value.copy(isLoading = true)
                 viewModelScope.launch(Dispatchers.IO) {
                     loadImagesFromDatabaseRoom() ?: loadAndSortImagesFromServer().also { saveImagesToRoom() } ?: handleError()
