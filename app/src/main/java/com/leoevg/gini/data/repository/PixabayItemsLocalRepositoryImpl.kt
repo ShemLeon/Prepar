@@ -24,7 +24,6 @@ class PixabayItemsLocalRepositoryImpl @Inject constructor(
     }
 
     override fun putPixabayList(cards: Cards) {
-        saveImageToFile()
         val entities = cards.cards.map {
             PixabayItemEntity(
                 id = it.id,
@@ -36,8 +35,6 @@ class PixabayItemsLocalRepositoryImpl @Inject constructor(
         roomApi.addPixabayItems(entities)
     }
 
-    private fun saveImageToFile() {
 
-    }
 
 }

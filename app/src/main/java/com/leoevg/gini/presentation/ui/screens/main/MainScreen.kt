@@ -39,7 +39,6 @@ fun MainScreen() {
 
     if (uiState.value.isLoading) CircularProgressIndicator()
     else InternalContent(uiState)
-
 }
 
 @Composable

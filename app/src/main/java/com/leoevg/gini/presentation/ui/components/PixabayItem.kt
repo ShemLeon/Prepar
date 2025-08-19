@@ -1,5 +1,6 @@
 package com.leoevg.gini.presentation.ui.components
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.leoevg.gini.R
 import androidx.compose.ui.graphics.Color
 import coil.compose.AsyncImage
+import com.leoevg.gini.data.util.ImageLoader
 // import com.leoevg.gini.data.network.model.HitResponse // Not used directly in this composable
 import com.leoevg.gini.domain.model.CardUI
 
@@ -38,7 +40,6 @@ fun PixabayItem(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(16f / 10f)
-        // contentAlignment = Alignment.BottomCenter // Option 2: Align all children to bottom center
     ) {
         AsyncImage(
             model = cardData.image,
@@ -112,5 +113,11 @@ fun PixabayItemPreview() {
         PixabayItem(cardData = fakeItem)
     }
 }
+
+private fun loadImages(context: Context, imageUrl: String){
+    val bitmap = ImageLoader.loadImage(context,imageUrl)
+}
+
+
 
 // a197e51143454561a9f6e478473e995a
