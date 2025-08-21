@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
@@ -25,10 +26,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leoevg.gini.R
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import coil.Coil
 import coil.compose.AsyncImage
 import com.leoevg.gini.data.util.ImageLoader
 // import com.leoevg.gini.data.network.model.HitResponse // Not used directly in this composable
 import com.leoevg.gini.domain.model.CardUI
+import com.leoevg.gini.presentation.ui.util.PixabayLoader
 
 @Composable
 fun PixabayItem(
@@ -114,10 +118,9 @@ fun PixabayItemPreview() {
     }
 }
 
-private fun loadImages(context: Context, imageUrl: String){
-    val bitmap = ImageLoader.loadImage(context,imageUrl)
+private fun loadImages(context: Context, imageUrl: String) {
+    val bitmap = ImageLoader.loadImage(context, imageUrl)
 }
-
 
 
 // a197e51143454561a9f6e478473e995a

@@ -14,7 +14,7 @@ object PixabayLoader {
                 DiskCache.Builder()
                     .directory(
                         context.cacheDir.resolve("image_cache")
-                    ).maxSizeBytes(50L * 1024 * 1024)
+                    ).maxSizeBytes(5L * 1024 * 1024)
                     .build()
             }
             .respectCacheHeaders(false)

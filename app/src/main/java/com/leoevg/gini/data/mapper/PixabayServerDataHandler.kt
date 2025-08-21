@@ -12,7 +12,7 @@ object PixabayServerDataHandler {
                 && hit.comments != null
                 && hit.image != null
                 && hit.likes > 50
-                && hit.comments > 5
+                && hit.comments > 50
             ) {
                 CardUI(
                     id = hit.id,
