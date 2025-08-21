@@ -18,7 +18,7 @@ object PixabayServerDataHandler {
                     id = hit.id,
                     likes = hit.likes,
                     comments = hit.comments,
-                    image = hit.image
+                    imageUrl = hit.image
                 )
             } else {
                 null

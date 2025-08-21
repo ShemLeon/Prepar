@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
@@ -26,13 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leoevg.gini.R
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import coil.Coil
 import coil.compose.AsyncImage
 import com.leoevg.gini.data.util.ImageLoader
 // import com.leoevg.gini.data.network.model.HitResponse // Not used directly in this composable
 import com.leoevg.gini.domain.model.CardUI
-import com.leoevg.gini.presentation.ui.util.PixabayLoader
 
 @Composable
 fun PixabayItem(
@@ -46,7 +42,7 @@ fun PixabayItem(
             .aspectRatio(16f / 10f)
     ) {
         AsyncImage(
-            model = cardData.image,
+            model = cardData.imageUrl,
             contentDescription = "background",
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.drawable.img_default),
@@ -109,7 +105,7 @@ fun PixabayItem(
 fun PixabayItemPreview() {
     val fakeItem = CardUI(
         id = 1,
-        image = "R.drawable.img_default", // For preview with local resource
+        imageUrl = "R.drawable.img_default", // For preview with local resource
         likes = 100,
         comments = 100
     )

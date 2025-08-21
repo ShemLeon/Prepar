@@ -15,7 +15,7 @@ class PixabayItemsLocalRepositoryImpl @Inject constructor(
         val cards = items.map {
             CardUI(
                 id = it.id,
-                image = it.image,
+                imageUrl = it.image,
                 likes = it.likes,
                 comments = it.comments
             )
@@ -27,7 +27,7 @@ class PixabayItemsLocalRepositoryImpl @Inject constructor(
         val entities = cards.cards.map {
             PixabayItemEntity(
                 id = it.id,
-                image = it.image,
+                image = it.imageUrl,
                 likes = it.likes,
                 comments = it.comments
             )

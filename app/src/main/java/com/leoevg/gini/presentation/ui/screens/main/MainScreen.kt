@@ -2,8 +2,6 @@ package com.leoevg.gini.presentation.ui.screens.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -72,9 +70,9 @@ private fun InternalContent(uiState: State<MainScreenState>) {
 fun MainScreenPreview() {
     val testCards = Cards(
         cards = listOf(
-            CardUI(id = 1, likes = 100, comments = 60, image = ""),
-            CardUI(id = 2, likes = 200, comments = 70, image = ""),
-            CardUI(id = 3, likes = 300, comments = 80, image = "")
+            CardUI(id = 1, likes = 100, comments = 60, imageUrl = ""),
+            CardUI(id = 2, likes = 200, comments = 70, imageUrl = ""),
+            CardUI(id = 3, likes = 300, comments = 80, imageUrl = "")
         )
     )
     val testState = remember {
