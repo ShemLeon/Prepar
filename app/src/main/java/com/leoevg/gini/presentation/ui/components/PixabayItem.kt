@@ -27,7 +27,6 @@ import com.leoevg.gini.R
 import androidx.compose.ui.graphics.Color
 import coil.compose.AsyncImage
 import com.leoevg.gini.data.util.ImageLoader
-// import com.leoevg.gini.data.network.model.HitResponse // Not used directly in this composable
 import com.leoevg.gini.domain.model.CardUI
 
 @Composable
@@ -50,11 +49,10 @@ fun PixabayItem(
             modifier = Modifier.fillMaxSize()
         )
         Row(
-            // verticalAlignment = Alignment.Bottom, // This aligns items *within* the Row, not the Row itself
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
-                .align(Alignment.BottomCenter) // This aligns the Row to the bottom center of the Box
-                .fillMaxWidth() // Optional: if you want the Row to span the full width before arranging children
+                .align(Alignment.BottomStart)
+                .fillMaxWidth()
                 .padding(10.dp)
         ) {
             // Likes
