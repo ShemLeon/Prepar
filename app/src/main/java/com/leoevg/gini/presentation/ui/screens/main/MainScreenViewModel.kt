@@ -1,10 +1,11 @@
 package com.leoevg.gini.presentation.ui.screens.main
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.leoevg.gini.domain.model.Cards
 import com.leoevg.gini.domain.useCase.LoadPixabayItemsUseCase
 import com.leoevg.gini.domain.useCase.SaveImagesToDatabaseUseCase
+import com.leoevg.gini.domain.model.Cards
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +28,9 @@ class MainScreenViewModel @Inject constructor(
             is MainScreenEvent.FetchImages -> {
                 _state.value = _state.value.copy(isLoading = true)
                 viewModelScope.launch(Dispatchers.IO) {
-                    loadImagesFromDatabaseRoom() ?: loadAndSortImagesFromServer().also { saveImagesToRoom() } ?: handleError()
+                    loadImagesFromDatabaseRoom()
+                        ?:loadAndSortImagesFromServer().also { saveImagesToRoom() }
+                        ?:handleError()
                 }
             }
         }

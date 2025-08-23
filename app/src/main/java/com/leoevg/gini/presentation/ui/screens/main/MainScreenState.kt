@@ -7,5 +7,4 @@ data class MainScreenState(
     val cards: Cards = Cards(emptyList()),
     val error: String = "",
     val loadImagesIsLocal: Boolean = true
-
 )

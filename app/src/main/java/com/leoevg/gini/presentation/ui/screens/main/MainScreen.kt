@@ -2,6 +2,7 @@ package com.leoevg.gini.presentation.ui.screens.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -35,8 +36,16 @@ fun MainScreen() {
         viewModel.sendEvent(MainScreenEvent.FetchImages)
     }
 
-    if (uiState.value.isLoading) CircularProgressIndicator()
-    else InternalContent(uiState)
+    if (uiState.value.isLoading) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+    } else {
+        InternalContent(uiState)
+    }
 }
 
 @Composable
@@ -62,7 +71,6 @@ private fun InternalContent(uiState: State<MainScreenState>) {
             color = Color.Red
         )
     }
-
 }
 
 @Preview(showBackground = true)
