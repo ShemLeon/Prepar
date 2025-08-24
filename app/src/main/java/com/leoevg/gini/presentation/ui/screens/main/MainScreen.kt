@@ -50,7 +50,7 @@ fun MainScreen() {
 
 @Composable
 private fun InternalContent(uiState: State<MainScreenState>) {
-    if (uiState.value.cards.cards.isNotEmpty()){
+    if (uiState.value.cards.cards.isNotEmpty()) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -59,14 +59,13 @@ private fun InternalContent(uiState: State<MainScreenState>) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-
             items(uiState.value.cards.cards.size) {
                 PixabayItem(cardData = uiState.value.cards.cards[it])
             }
         }
     } else {
         Text(
-            text = "EMPTY SPISOK",
+            text = "EMPTY LIST",
             fontSize = 30.sp,
             color = Color.Red
         )
